@@ -1,5 +1,4 @@
-INPUT_EPSILON = 'ep'
-EPSILON = 'ε'
+from CFG.constants import EPSILON, INPUT_EPSILON
 def get_grammar():
     grammar = ""
     print(f"Enter your grammar productions (use 'ep' for epsilon('ε') and 'end' to finish):")

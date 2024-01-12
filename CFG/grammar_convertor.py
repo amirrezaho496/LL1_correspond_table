@@ -1,5 +1,6 @@
-def convert_grammar(grammar_str):
-    grammar = {}
+
+def convert_grammar(grammar_str : str):
+    grammar: dict[str, list[list[str]]] = {}
     rules = grammar_str.split('\n')
     for rule in rules:
         if '->' not in rule:
@@ -13,11 +14,16 @@ def convert_grammar(grammar_str):
 
 # Your grammar as a string
 # grammar_str = """
-# S -> a B b | ab | a
-# B -> a | aaa | bb | ab C c
-# C -> a | c | ac | aaaaa | S
+# S -> A a b | a b | ε
+# A -> B | a | b
+# B -> B bb | b | ε
 # """
 
 # Convert the string to a dictionary
 # grammar_dict = convert_grammar(grammar_str)
-# print(grammar_dict)
+# => 
+# {
+#   'S': [['A', 'a', 'b'], ['a', 'b'], ['ε']],
+#   'A': [['B'], ['a'], ['b']], 
+#   'B': [['B', 'bb'], ['b'], ['ε']]
+# }

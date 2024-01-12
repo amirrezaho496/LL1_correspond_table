@@ -1,19 +1,19 @@
 EPSILON = 'ε'
-def first(grammar, term):
+def first(grammar, symbol):
     """
     Calculate the FIRST set for a given non-terminal symbol in a context-free grammar.
 
     Parameters:
     grammar (dict): The context-free grammar, represented as a dictionary where the keys are non-terminal symbols and the values are lists of productions.
-    term (str): The non-terminal symbol for which to calculate the FIRST set.
+    symbol (str): The non-terminal symbol for which to calculate the FIRST set.
 
     Returns:
     set: The FIRST set for the given non-terminal symbol.
     """    
     first_set = set()
-    if term not in grammar:
-        return set(term)
-    for prod in grammar[term]:
+    if symbol not in grammar:
+        return set(symbol)
+    for prod in grammar[symbol]:
         first_symbol = prod[0]
         
         if first_symbol == EPSILON:
@@ -34,18 +34,6 @@ def first(grammar, term):
         else:  # If the first symbol is a terminal
             first_set.add(first_symbol)
     return first_set
-
-def follow(grammar, term):
-    """
-    Calculate the FOLLOW set for a given non-terminal symbol in a context-free grammar.
-
-    Parameters:
-    grammar (dict): The context-free grammar, represented as a dictionary where the keys are non-terminal symbols and the values are lists of productions.
-    term (str): The non-terminal symbol for which to calculate the FOLLOW set.
-
-    Returns:
-    set: The FOLLOW set for the given non-terminal symbol.
-    """
 def follow(grammar, term, seen=None):
     
     # 'seen' is used to track processed non-terminals and prevent infinite recursion
@@ -60,13 +48,13 @@ def follow(grammar, term, seen=None):
     
     # Transform the grammar into a dictionary where each production is a list of symbols
     prods = {}
-    for k, v in grammar.items():
-        prods[k] = []
-        for a in v:
+    for key, valueList in grammar.items():
+        prods[key] = []
+        for productionRule in valueList:
             prod = []
-            for b in a:
-                prod.append(b)
-            prods[k].append(prod)
+            for productionList in productionRule:
+                prod.append(productionList)
+            prods[key].append(prod)
             
     if term == next(iter(grammar)):
         follow_set.add('$')

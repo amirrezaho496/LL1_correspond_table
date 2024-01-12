@@ -18,7 +18,8 @@ while(True):
 print("__________________________________")
 print("Converting Grammar :")
 grammar = gm_convert.convert_grammar(grammar_str)
-print(grammar)
+for v, p in grammar.items():
+    print("%s : %s"%(v,p))
 print("__________________________________")
 print("First : ")
 first = ff.get_first(grammar)
