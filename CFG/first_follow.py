@@ -112,6 +112,4 @@ def get_follow(grammar : dict[str, list]) :
 # for non_term in grammar:
 #     print(f'FIRST({non_term}) = {first(grammar, non_term)}')
 #     print(f'FOLLOW({non_term}) = {follow(grammar, non_term)}')
-    
-    
 
