@@ -1,3 +1,6 @@
+from CFG.constants import DOLLOR
+
+
 EPSILON = 'ε'
 def first(grammar, symbol):
     """
@@ -57,7 +60,7 @@ def follow(grammar, term, seen=None):
             prods[key].append(prod)
             
     if term == next(iter(grammar)):
-        follow_set.add('$')
+        follow_set.add(DOLLOR)
     for key, values in prods.items():
         for value in values:
             if term in value:

@@ -1,2 +1,3 @@
 INPUT_EPSILON = 'ep'
 EPSILON = 'ε'
+DOLLOR = '$'

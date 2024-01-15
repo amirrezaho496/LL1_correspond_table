@@ -1,7 +1,7 @@
 import CFG.constants as cnts
 def create_m_table(grammar: dict[str, list[list[str]]], all_firsts: dict, all_follows: dict):
     # Initialize m_table with all non-terminals in the grammar
-    m_table = {non_terminal: {} for non_terminal in grammar.keys()}
+    m_table : dict[str, dict[str, list[str]]] = {non_terminal: {} for non_terminal in grammar.keys()}
 
     for non_terminal, productions in grammar.items():
         for production in productions:

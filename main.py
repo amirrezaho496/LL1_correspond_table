@@ -1,7 +1,9 @@
-from sympy import epath
+from unittest import result
+from sympy import epath, true
 import CFG.get_grammar as get_g
 import CFG.grammar_convertor as gm_convert
 import CFG.first_follow as ff
+from CFG.ll1_parsing import ll1_parse
 import CFG.m_table as mtable
 
 while(True):
@@ -35,6 +37,7 @@ m_table = mtable.create_m_table(grammar, first, follow)
 print("__________________________________")
 print("M Table :")
 mtable.print_m_table_2(m_table)
+#print(m_table)
 # S -> b A S' | d B S'
 # S' -> a S" | ep
 # S" -> b A S' S' | d B S' S' 
@@ -60,5 +63,20 @@ mtable.print_m_table_2(m_table)
 # E' -> + T E' | ep
 # T -> F T'
 # T' -> * F T' | ep
-# F -> ( E ) | id
+# F -> ( E ) | d
 # end
+
+while(true):
+    print("_____________________________________")
+    print("Enter your string for checking :")
+    input_str = input('str :')
+    
+    if input_str == 'end':
+        break
+    
+    reslt = ll1_parse(m_table, input_str)
+
+    if reslt:
+        print(f"The string '{input_str}' was successfully parsed.")
+    else:
+        print(f"The string '{input_str}' could not be parsed.")
