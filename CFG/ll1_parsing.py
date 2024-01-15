@@ -10,14 +10,14 @@ def ll1_parse(m_table : dict[str, dict[str, list[str]]] , input_string):
     # Initialize the input pointer
     input_pointer = 0
 
-    print(f"{'Stack':<20} | {'String':<20} | {'Productions':<20}")
+    print(f"{'Stack':<20} | {'String':<20} | {'Productions':<14} | {'Matched':<10}")
     while len(stack) > 0:
         top = stack[-1]
 
         if top == cnts.EPSILON:
             stack.pop()
             continue
-        
+        matched = ''
         if top in m_table:
             # The top of the stack is a non-terminal
             if input_string[input_pointer] in m_table[top]:
@@ -36,15 +36,16 @@ def ll1_parse(m_table : dict[str, dict[str, list[str]]] , input_string):
                 # The terminal matches the current token
                 stack.pop()
                 input_pointer += 1
+                matched = top
             else:
                 # The terminal does not match the current token
                 return False
 
         
-        stack_string = " ".join(stack)
+        stack_string = "".join(stack)
         left_string = input_string[input_pointer:]
             
-        print(f"{str(stack_string):<20} | {str(left_string):<20} | {str(var)}->{str(''.join(production)):<20}")
+        print(f"{str(stack_string):<20} | {str(left_string):<20} | {str(var):<2}->{str(''.join(production)):<10} | {(f'matched : {matched}' if len(matched) > 0 else ''):<10}")
         pass
         
     # Check if all tokens have been consumed

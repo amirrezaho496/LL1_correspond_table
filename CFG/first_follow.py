@@ -82,7 +82,7 @@ def get_first(grammar : dict[str, list]) :
         first_n = first(grammar, non_term)
         first_dict[non_term] = first_n
         
-        print(f'FIRST({non_term}) = {first_n}')
+        print(f'FIRST({non_term:<2}) = {first_n}')
     
     return first_dict
 
@@ -92,7 +92,7 @@ def get_follow(grammar : dict[str, list]) :
         first_n = follow(grammar, non_term)
         first_dict[non_term] = first_n
         
-        print(f'FOLLOW({non_term}) = {first_n}')
+        print(f'FOLLOW({non_term:<2}) = {first_n}')
     
     return first_dict
 

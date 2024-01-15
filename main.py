@@ -23,7 +23,7 @@ print("__________________________________")
 print("Converting Grammar :")
 grammar = gm_convert.convert_grammar(grammar_str)
 for v, p in grammar.items():
-    print("%s : %s"%(v,p))
+    print(f"{str(v):<2} -> {str(p)}")
 print("__________________________________")
 print("First : ")
 first = ff.get_first(grammar)
@@ -74,6 +74,7 @@ while(true):
     if input_str == 'end':
         break
     
+    print("parsing string : \n")
     reslt = ll1_parse(m_table, input_str)
 
     if reslt:
